@@ -1,0 +1,13 @@
+﻿<prism:PrismApplication x:Class="SamplePrism2023.App"
+          xmlns:prism="http://prismlibrary.com/"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/SamplePrism2023.Counter;component/Resources/MainDictionary.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/SamplePrism2023.Counter;component/Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</prism:PrismApplication>

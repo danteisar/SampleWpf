@@ -1,0 +1,52 @@
+﻿<Window x:Class="SampleWpf2023.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:SampleWpf2023.ViewModels"
+        xmlns:views="clr-namespace:SampleWpf2023.Views"
+        xmlns:converters="clr-namespace:SampleWpf2023.Converters"
+        xmlns:mvvm="clr-namespace:MVVM;assembly=MVVM"
+        xmlns:components="clr-namespace:SampleWpf2023.Components"
+        mc:Ignorable="d"
+        Title="{Binding Model.Value, Converter={converters:CounterConverter}}"
+        Style="{StaticResource WindowStyle}">
+
+    <Window.DataContext>
+        <viewModels:CounterViewModel/>
+    </Window.DataContext>
+    
+    <UniformGrid>
+
+        <views:CounterView />
+
+        <mvvm:FlipControl>
+            <mvvm:FlipControl.FrontContent>
+                <components:CustomTextBlock Counter="{Binding Model.Value}" />
+            </mvvm:FlipControl.FrontContent>
+            <mvvm:FlipControl.BackContent>
+                <views:CounterView/>
+            </mvvm:FlipControl.BackContent>
+        </mvvm:FlipControl>
+
+        <views:CounterView>
+            <views:CounterView.DataContext>
+                <viewModels:CounterViewModel/>
+            </views:CounterView.DataContext>
+        </views:CounterView>
+
+        <mvvm:FlipControl>
+            <mvvm:FlipControl.DataContext>
+                <viewModels:CounterViewModel/>
+            </mvvm:FlipControl.DataContext>
+
+            <mvvm:FlipControl.FrontContent>
+                <components:CustomTextBlock Counter="{Binding Model.Value}" />
+            </mvvm:FlipControl.FrontContent>
+
+            <mvvm:FlipControl.BackContent>
+                <views:CounterView/>
+            </mvvm:FlipControl.BackContent>
+        </mvvm:FlipControl>
+    </UniformGrid>
+</Window>

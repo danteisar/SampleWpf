@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="SamplePrism2023.Counter.Views.CounterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cv="clr-namespace:SamplePrism2023.Counter.Converters"
+             xmlns:vm="clr-namespace:SamplePrism2023.Counter.ViewModels"
+             xmlns:components="clr-namespace:SamplePrism2023.Counter.Components"
+             mc:Ignorable="d"
+             d:DesignWidth="450"
+             d:DataContext="{d:DesignInstance vm:CounterViewModel}">
+    <d:UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/MainDictionary.xaml"/>
+                <ResourceDictionary Source="../Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </d:UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <components:CustomTextBlock Grid.ColumnSpan="2" Counter="{Binding Model.Value}"/>
+
+        <TextBox Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" 
+                 Text="{Binding Model.Value, UpdateSourceTrigger=PropertyChanged}"
+                 Background="{Binding Model.Value, Converter={cv:CounterToBrushConverter}}"/>
+
+        <Button Grid.Column="0" Grid.Row="2" 
+                Command="{Binding IncrementCommand}"
+                Style="{StaticResource IncrementButton}"/>
+
+        <Button Grid.Column="1" Grid.Row="2"
+                Command="{Binding DecrementCommand}"/>
+    </Grid>
+</UserControl>

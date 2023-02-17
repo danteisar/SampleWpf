@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="4.7.1" />
+    <PackageReference Include="Prism.Unity" Version="8.1.97" />
+    <PackageReference Include="ReactiveUI.Fody" Version="18.4.20" />
+    <PackageReference Include="ReactiveUI.WPF" Version="18.4.20" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SamplePrism2023.Counter\SamplePrism2023.Counter.csproj" />
+    <ProjectReference Include="..\SamplePrism2023.Shared\SamplePrism2023.Shared.csproj" />
+    <ProjectReference Include="..\SamplePrism2023.Showcase\SamplePrism2023.Showcase.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Prism.Unity.Wpf">
+      <HintPath>..\..\..\..\..\..\.nuget\packages\prism.unity\8.0.0.1909\lib\netcoreapp3.1\Prism.Unity.Wpf.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -3,13 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModels="clr-namespace:SamplePrism2023.ViewModels"
         mc:Ignorable="d"
         xmlns:prism="http://prismlibrary.com/"
         xmlns:shared="clr-namespace:SamplePrism2023.Shared;assembly=SamplePrism2023.Shared"
-        d:DataContext="{d:DesignInstance viewModels:ShellViewModel}"
-        Title="{Binding Title}" 
+        xmlns:components="clr-namespace:SamplePrism2023.Components"
         Height="650" Width="650"
         Style="{StaticResource WindowStyle}">
-   <ContentControl prism:RegionManager.RegionName="{x:Static shared:Regions.MainRegion}"/>
+   <DockPanel>
+       <components:Header DockPanel.Dock="Top"/>
+        <ContentControl prism:RegionManager.RegionName="{x:Static shared:Regions.MainRegion}"/>
+    </DockPanel>
 </Window>

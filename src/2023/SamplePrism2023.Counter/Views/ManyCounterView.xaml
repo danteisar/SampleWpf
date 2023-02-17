@@ -10,6 +10,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance viewModels:ManyCounterViewModel}"
+             Background="#aa212121"
+             Margin="-10 -5 -10 -10"
              >
     <d:UserControl.Resources>
         <ResourceDictionary>

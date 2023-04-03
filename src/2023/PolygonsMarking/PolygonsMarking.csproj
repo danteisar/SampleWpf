@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
-    <UseWPF>true</UseWPF>
+	  <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,15 +14,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SamplePrism2023.Counter\SamplePrism2023.Counter.csproj" />
-    <ProjectReference Include="..\SamplePrism2023.Shared\SamplePrism2023.Shared.csproj" />
-    <ProjectReference Include="..\SamplePrism2023.Showcase\SamplePrism2023.Showcase.csproj" />
+    <ProjectReference Include="..\PolygonsMarking.Editor\PolygonsMarking.Editor.csproj" />
+    <ProjectReference Include="..\PolygonsMarking.Shared\PolygonsMarking.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Prism.Unity.Wpf">
-      <HintPath>..\..\..\..\..\..\.nuget\packages\prism.unity\8.0.0.1909\lib\netcoreapp3.1\Prism.Unity.Wpf.dll</HintPath>
-    </Reference>
+    <Compile Update="Components\Header.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Components\Header.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

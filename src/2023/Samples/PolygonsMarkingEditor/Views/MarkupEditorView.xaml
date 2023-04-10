@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="PolygonsMarkingEditor.Views.MarkupEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:viewModels="clr-namespace:PolygonsMarkingEditor.ViewModels"
+             xmlns:models="clr-namespace:PolygonsMarkingEditor.Models"
+             xmlns:behaviors="clr-namespace:PolygonsMarkingEditor.Behaviors"
+             xmlns:converters="clr-namespace:PolygonsMarkingEditor.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance viewModels:MarkupEditorViewModel}">
+    <d:UserControl.Resources>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+    </d:UserControl.Resources>
+    <Grid>
+        <ItemsControl ItemsSource="{Binding Path=Elements}">
+            <ItemsControl.Resources>
+                <Style TargetType="Ellipse" x:Key="EllipseStyle">
+                    <Setter Property="Fill" Value="{DynamicResource PrimaryHueMidBrush}"/>
+                    <Setter Property="Width" Value="20"/>
+                    <Setter Property="Height" Value="20"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Fill" Value="{DynamicResource SecondaryHueMidBrush}" />
+                            <Setter Property="Width" Value="30"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="Margin" Value="-5 -5 0 0"/>
+                        </Trigger>
+                        <DataTrigger Binding="{Binding IsSelected}" Value="True" d:DataContext="{d:DesignInstance models:Vertex}">
+                            <Setter Property="Fill" Value="{DynamicResource SecondaryHueDarkBrush}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+                <DataTemplate DataType="{x:Type models:Vertex}">
+                    <Ellipse 
+                        Style="{StaticResource EllipseStyle}"
+                        Canvas.Top="{Binding Y, Mode=TwoWay}" 
+                        Canvas.Left="{Binding X, Mode=TwoWay}">
+                        <b:Interaction.Behaviors>
+                            <behaviors:DragBehaviour CanDrag="True"/>
+                        </b:Interaction.Behaviors>
+                    </Ellipse>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type models:VertexLine}">
+                    <Line 
+                        X1="{Binding Start.X, Converter={converters:VertexCenterConverter}}"
+                        Y1="{Binding Start.Y, Converter={converters:VertexCenterConverter}}"
+                        X2="{Binding End.X, Converter={converters:VertexCenterConverter}}"
+                        Y2="{Binding End.Y, Converter={converters:VertexCenterConverter}}"
+                        Stroke="{DynamicResource MaterialDesignBody}"
+                        StrokeThickness="3"/>
+                </DataTemplate>
+            </ItemsControl.Resources>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas x:Name="Canvas" Background="{DynamicResource MaterialDesignPaper}" Margin="10">
+                        <Canvas.InputBindings>
+                            <MouseBinding Gesture="LeftClick" Command="{Binding DataContext.Add, ElementName=Canvas}"/>
+                            <MouseBinding Gesture="MiddleClick" Command="{Binding DataContext.End, ElementName=Canvas}"/>
+                            <MouseBinding Gesture="RightDoubleClick" Command="{Binding DataContext.Clear, ElementName=Canvas}"/>
+                        </Canvas.InputBindings>
+                        <b:Interaction.Behaviors>
+                            <behaviors:MouseBehaviour MouseX="{Binding Vertex.X, Mode=TwoWay}"
+                                                      MouseY="{Binding Vertex.Y, Mode=TwoWay}"/>
+                            <behaviors:RubberbandBehaviour/>
+                        </b:Interaction.Behaviors>
+                    </Canvas>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="Canvas.Left" Value="{Binding Path=X, Mode=TwoWay}" d:DataContext="{d:DesignInstance models:Vertex}"/>
+                    <Setter Property="Canvas.Top" Value="{Binding Path=Y, Mode=TwoWay}" d:DataContext="{d:DesignInstance models:Vertex}"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
+       <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
+           <StackPanel.Resources>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignTextBlock}">
+                    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+                    <Setter Property="FontSize" Value="16"/>
+                </Style>
+            </StackPanel.Resources>
+           <TextBlock Text="ЛКМ - ДОБАВИТЬ ВЕРШИНУ"/>
+           <TextBlock Text="ПКМ - ДВИГАТЬ ВЕРШИНУ"/>
+           <TextBlock Text="CКМ - ЗАМКНУТЬ"/>
+           <UniformGrid Columns="2">
+               <Button Content="{md:PackIcon ArrowLeft}" 
+                       Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                       Command="{Binding Cancel}"
+                       ToolTip="ШАГ НАЗАД" Margin="0 4 10 4"/>
+               <Button Content="{md:PackIcon Clear}" 
+                       Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                       Command="{Binding Clear}"
+                       ToolTip="ОЧИСТИТЬ (ПКМ х2)" Margin="0 4 0 4"/>
+            </UniformGrid>
+       </StackPanel>
+    </Grid>
+</UserControl>

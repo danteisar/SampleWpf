@@ -1,43 +1,7 @@
-﻿using System;
-using System.ComponentModel;
-using System.Linq.Expressions;
-using System.Reflection;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace MVVM;
-
-[AttributeUsage(AttributeTargets.Parameter)]
-public sealed class CallerMemberNameAttribute : Attribute
-{
-
-}
-
-[AttributeUsage(
-    AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
-    AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
-    AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
-public sealed class NotNullAttribute : Attribute
-{
-}
-
-[AttributeUsage(
-    AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
-    AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
-    AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
-public sealed class CanBeNullAttribute : Attribute
-{
-}
-
-[AttributeUsage(AttributeTargets.Method)]
-public sealed class NotifyPropertyChangedInvocatorAttribute : Attribute
-{
-    public NotifyPropertyChangedInvocatorAttribute()
-    {
-    }
-
-    public NotifyPropertyChangedInvocatorAttribute([NotNull] string parameterName) => ParameterName = parameterName;
-
-    [CanBeNull] public string ParameterName { get; private set; }
-}
 
 public class BindableBase : INotifyPropertyChanged
 {
@@ -70,6 +34,5 @@ public class BindableBase : INotifyPropertyChanged
         return true;
     }
 
-    [NotifyPropertyChangedInvocator]
     protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 }

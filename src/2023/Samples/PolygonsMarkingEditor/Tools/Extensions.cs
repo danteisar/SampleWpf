@@ -65,5 +65,7 @@ internal static class Extensions
             }
         }
     }
+
+    public const int ElementSize = 5;
 }
 

@@ -1,4 +1,5 @@
-﻿using ReactiveUI;
+﻿using PolygonsMarkingEditor.Tools;
+using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
 namespace PolygonsMarkingEditor.Models;
@@ -17,7 +18,7 @@ internal class Vertex : ReactiveObject
 
     public Vertex(Vertex s)
     {
-        X = s.X - 10;
-        Y = s.Y - 10;
+        X = s.X - Extensions.ElementSize;
+        Y = s.Y - Extensions.ElementSize;
     }
 }

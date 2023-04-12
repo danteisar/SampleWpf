@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="PolygonsMarkingEditor.Component.Helper"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:viewModels="clr-namespace:PolygonsMarkingEditor.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModels:MarkupEditorViewModel}">
+    <d:UserControl.Resources>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+    </d:UserControl.Resources>
+    <StackPanel>
+        <StackPanel.Resources>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignTextBlock}">
+                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+        </StackPanel.Resources>
+        <TextBlock Text="ПКМ - ДОБАВИТЬ ВЕРШИНУ"/>
+        <TextBlock Text="ЛКМ - ДВИГАТЬ ВЕРШИНУ"/>
+        <TextBlock Text="CКМ - ЗАМКНУТЬ"/>
+        <UniformGrid Columns="3">
+            <Button Content="{md:PackIcon ArrowLeft}" 
+                    Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                    Command="{Binding Cancel}"
+                    ToolTip="ШАГ НАЗАД" Margin="0 4 10 4"/>
+            <Button Content="{md:PackIcon Clear}" 
+                    Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                    Command="{Binding Clear}"
+                    ToolTip="ОЧИСТИТЬ (ПКМ х2)" Margin="0 4 10 4"/>
+            <Button Content="{md:PackIcon Image}" 
+                    Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                    Command="{Binding AddImage}"
+                    ToolTip="ДОБАВИТЬ" Margin="0 4 0 4"/>
+        </UniformGrid>
+    </StackPanel>
+</UserControl>

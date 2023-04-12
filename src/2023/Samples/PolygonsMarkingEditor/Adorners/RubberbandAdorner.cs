@@ -56,7 +56,7 @@ public class RubberbandAdorner : Adorner
     /// <param name="e"></param>
     protected override void OnMouseMove(MouseEventArgs e)
     {
-        if (e.RightButton == MouseButtonState.Pressed)
+        if (e.LeftButton == MouseButtonState.Pressed)
         {
             if (!IsMouseCaptured) CaptureMouse();
             var p = e.GetPosition(this);
@@ -109,7 +109,7 @@ public class RubberbandAdorner : Adorner
     private void UpdateSelection()
     {
         if (_startPoint == null || _endPoint == null) return;
-        if (!(_designerCanvas.DataContext is MarkupEditorViewModel vm)) return;
+        if (_designerCanvas.DataContext is not MarkupEditorViewModel vm) return;
         var rubberBand = new Rect(_startPoint.Value, _endPoint.Value);
         var itemsControl = _designerCanvas.FindVisualParent<ItemsControl>();
 

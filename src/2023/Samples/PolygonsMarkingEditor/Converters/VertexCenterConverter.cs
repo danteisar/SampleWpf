@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using MVVM.Converters;
+using PolygonsMarkingEditor.Tools;
 
 namespace PolygonsMarkingEditor.Converters;
 
@@ -10,6 +11,6 @@ public class VertexCenterConverter : ConverterBase<VertexCenterConverter>
     {
         if (value is not double d) return double.NaN;
 
-        return d + 10;
+        return d + Extensions.ElementSize;
     }
 }

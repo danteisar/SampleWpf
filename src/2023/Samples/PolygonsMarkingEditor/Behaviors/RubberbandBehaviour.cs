@@ -10,41 +10,39 @@ namespace PolygonsMarkingEditor.Behaviors;
 
 internal class RubberbandBehaviour : Behavior<Canvas>
 {
-    private Point? _rubberbandSelectionStartPoint;
+    private Point? _startPoint;
 
     protected override void OnAttached()
     {
         AssociatedObject.MouseMove += AssociatedObjectOnMouseMove;
-        AssociatedObject.MouseRightButtonDown += OnMouseDown;
+        AssociatedObject.MouseLeftButtonDown += OnMouseDown;
     }
 
     protected override void OnDetaching()
     {
         AssociatedObject.MouseMove -= AssociatedObjectOnMouseMove;
-        AssociatedObject.MouseRightButtonDown -= OnMouseDown;
+        AssociatedObject.MouseLeftButtonDown -= OnMouseDown;
     }
 
     private void AssociatedObjectOnMouseMove(object sender, MouseEventArgs e)
     {
-        if (_rubberbandSelectionStartPoint != null && e.RightButton != MouseButtonState.Pressed)
+        if (_startPoint != null && e.LeftButton != MouseButtonState.Pressed)
         {
-            _rubberbandSelectionStartPoint = null;
+            _startPoint = null;
         }
 
-        if (!_rubberbandSelectionStartPoint.HasValue) return;
+        if (!_startPoint.HasValue) return;
 
-        var adornerLayer = AdornerLayer.GetAdornerLayer(AssociatedObject);
-        if (adornerLayer == null) return;
+        var layer = AdornerLayer.GetAdornerLayer(AssociatedObject);
 
-        var adorner = new RubberbandAdorner(AssociatedObject, _rubberbandSelectionStartPoint);
-        adornerLayer.Add(adorner);
+        layer?.Add(new RubberbandAdorner(AssociatedObject, _startPoint));
     }
 
     private void OnMouseDown(object sender, MouseButtonEventArgs e)
     {
-        if (e.RightButton != MouseButtonState.Pressed || !Equals(e.Source, AssociatedObject)) return;
+        if (e.LeftButton != MouseButtonState.Pressed || !Equals(e.Source, AssociatedObject)) return;
 
-        _rubberbandSelectionStartPoint = e.GetPosition(AssociatedObject);
+        _startPoint = e.GetPosition(AssociatedObject);
 
         var vm = AssociatedObject.DataContext as MarkupEditorViewModel;
         if (!(Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))

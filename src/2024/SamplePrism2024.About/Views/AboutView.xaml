@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="SamplePrism2024.About.Views.AboutView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:SamplePrism2024.About.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" 
+             d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance viewModels:AboutViewModel}"
+             Background="#212121">
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel.InputBindings>
+            <MouseBinding 
+                MouseAction="LeftClick" 
+                Command="{Binding BackCommand}"/>
+        </StackPanel.InputBindings>
+        <TextBlock Text="PRISM WPF 2024" 
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="48" 
+                   FontFamily="72 Black"
+                   Foreground="White"
+                   >
+            <TextBlock.InputBindings>
+                <MouseBinding 
+                    MouseAction="LeftClick" 
+                    Command="{Binding BackCommand}"
+                    />
+            </TextBlock.InputBindings>
+        </TextBlock>
+        <TextBlock FontSize="10" Foreground="White" 
+                   Text="Нажмите на текст выше, чтобы вернуться на главный экран"
+                   HorizontalAlignment="Center"/>
+    </StackPanel>
+</UserControl>

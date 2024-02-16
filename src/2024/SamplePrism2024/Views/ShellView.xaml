@@ -6,14 +6,33 @@
         xmlns:shared="clr-namespace:SamplePrism2024.Shared;assembly=SamplePrism2024.Shared"
         xmlns:regions="http://prismlibrary.com/"
         xmlns:components="clr-namespace:SamplePrism2024.Components"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:vm="clr-namespace:SamplePrism2024.ViewModels"
+        xmlns:mvvm="clr-namespace:MVVM;assembly=MVVM"
+        xmlns:cv="clr-namespace:MVVM.Converters;assembly=MVVM"
         mc:Ignorable="d"
-        d:DesignHeight="480" 
         d:DesignWidth="640"
-        Style="{StaticResource WindowStyle}">
+        Height="480"
+        Width="{Binding Width, Mode=TwoWay}"
+        Style="{StaticResource WindowStyle}"
+        d:DataContext="{d:DesignInstance vm:ShellViewModel}">
     <DockPanel>
         <components:Header DockPanel.Dock="Top"/>
         <Border BorderBrush="Black" BorderThickness="2">
-            <ContentControl regions:RegionManager.RegionName="{x:Static shared:Regions.MainRegion}"/>
+            <Grid>
+                <ContentControl regions:RegionManager.RegionName="{x:Static shared:Regions.MainRegion}"
+                                Visibility="{Binding IsFlipped, Converter={cv:VisibilityReverseConverter}}"/>
+                <ContentControl regions:RegionManager.RegionName="{x:Static shared:Regions.SecondRegion}"
+                                Visibility="{Binding IsFlipped, Converter={cv:VisibilityConverter}}"/>
+            </Grid>
+            <!--<md:Flipper IsFlipped="{Binding IsFlipped}" Margin="10">
+                <md:Flipper.FrontContent>
+                    <ContentControl regions:RegionManager.RegionName="{x:Static shared:Regions.MainRegion}"/>
+                </md:Flipper.FrontContent>
+                <md:Flipper.BackContent>
+                    <ContentControl regions:RegionManager.RegionName="{x:Static shared:Regions.SecondRegion}"/>
+                </md:Flipper.BackContent>
+            </md:Flipper>-->
         </Border>
     </DockPanel>
 </Window>

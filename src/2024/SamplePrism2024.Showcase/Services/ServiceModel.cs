@@ -6,28 +6,38 @@ internal class ServiceModel : IServiceModel
 {
     public async Task Push(IModel model)
     {
-        if (model.Input == 0) return;
+        if (!model.Input.HasValue) return;
         await Task.Delay(200);
-        model.History.Add(model.Input);
-        model.Input = 0;
+        model.History.Add(model.Input.Value);
     }
 
     public void Pop(IModel model)
     {
         if (!model.History.Any()) return;
-        model.Input = model.History.Last();
-        model.History.Remove(model.Input);
+        var input = model.History.Last();
+        model.Input = input;
+        model.History.Remove(input);
     }
 
     public void Random(IModel model)
     {
         var rand = new Random();
-        model.Input = rand.Next(-9,9);
-        model.History.Remove(model.Input);
+        int i;
+        do
+        {
+            i = rand.Next(-9, 9);
+        } while (i == 0);
+
+        model.Input = i;
     }
 
     public void Clear(IModel model)
     {
         model.History.Clear();
+    }
+
+    public bool Check(IModel model)
+    {
+        return !model.Input.HasValue && model.History.Any();
     }
 }

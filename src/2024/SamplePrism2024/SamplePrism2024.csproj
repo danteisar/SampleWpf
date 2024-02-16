@@ -15,10 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\SamplePrism2024.Showcase\SamplePrism2024.Showcase.csproj" />
     <ProjectReference Include="..\..\2023\MVVM\MVVM.csproj" />
     <ProjectReference Include="..\SamplePrism2024.About\SamplePrism2024.About.csproj" />
     <ProjectReference Include="..\SamplePrism2024.Shared\SamplePrism2024.Shared.csproj" />
+    <ProjectReference Include="..\SamplePrism2024.Showcase\SamplePrism2024.Showcase.csproj" />
   </ItemGroup>
 
 </Project>

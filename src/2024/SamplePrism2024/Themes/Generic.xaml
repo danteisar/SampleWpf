@@ -3,8 +3,6 @@
 
     <Style TargetType="{x:Type Window}" x:Key="WindowStyle">
         <Setter Property="Background" Value="#dd000000"/>
-        <Setter Property="Width" Value="640"/>
-        <Setter Property="Height" Value="480"/>
         <Setter Property="WindowStyle" Value="None"/>
         <Setter Property="AllowsTransparency" Value="True"/>
     </Style>

@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\2023\MVVM\MVVM.csproj" />
-    <ProjectReference Include="..\src\2024\SamplePrism2024.Shared\SamplePrism2024.Shared.csproj" />
+    <ProjectReference Include="..\..\2023\MVVM\MVVM.csproj" />
+    <ProjectReference Include="..\SamplePrism2024.Shared\SamplePrism2024.Shared.csproj" />
   </ItemGroup>
 
 

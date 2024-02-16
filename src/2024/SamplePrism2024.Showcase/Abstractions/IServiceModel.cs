@@ -6,4 +6,5 @@ internal interface IServiceModel
     void Pop(IModel model);
     void Random(IModel model);
     void Clear(IModel model);
+    bool Check(IModel model);
 }

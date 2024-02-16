@@ -2,6 +2,6 @@
 
 namespace SamplePrism2024.Shared.Events;
 
-public class InputChanged : PubSubEvent<int?>
+public class IsFlippedChanged : PubSubEvent<bool>
 {
 }

@@ -7,7 +7,7 @@ namespace SamplePrism2024.Showcase.Models;
 
 public class Model : ReactiveObject, IModel
 {
-    [Reactive] public int Input { get; set; }
+    [Reactive] public int? Input { get; set; }
 
     public ObservableCollection<int> History { get; } = new();
 }

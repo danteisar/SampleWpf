@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using Prism.Ioc;
 using Prism.Modularity;
+using Prism.Regions;
+using Prism.Unity;
 using SamplePrism2024.About;
 using SamplePrism2024.Showcase;
 using SamplePrism2024.ViewModels;
@@ -18,7 +20,7 @@ public partial class App
         containerRegistry
             .RegisterSingleton<ShellViewModel>();
     }
-
+    
     protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
     {
         moduleCatalog

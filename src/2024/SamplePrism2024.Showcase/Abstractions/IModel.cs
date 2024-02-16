@@ -5,6 +5,6 @@ namespace SamplePrism2024.Showcase.Abstractions;
 
 public interface IModel : INotifyPropertyChanged
 {
-    int Input { get; set; }
+    int? Input { get; set; }
     ObservableCollection<int> History { get; }
 }

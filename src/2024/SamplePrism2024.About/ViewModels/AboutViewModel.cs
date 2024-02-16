@@ -20,7 +20,7 @@ internal class AboutViewModel : BindableBase
     private void Back()
     {
         _regionManager
-            .RequestNavigate(Regions.MainRegion, Navigation.MainPage);
+            .RequestNavigate(Regions.MainRegion, Navigation.ShowcasePage);
     }
 
     public ICommand BackCommand { get; }

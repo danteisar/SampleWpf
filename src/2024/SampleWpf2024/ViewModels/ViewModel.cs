@@ -1,14 +1,13 @@
-﻿using System.Collections.Specialized;
-using System.Reactive.Concurrency;
-using System.Reactive.Linq;
-using System.Windows;
-using System.Windows.Input;
-using MVVM.Commands;
+﻿using MVVM.Commands;
 using MVVM.Extensions;
 using ReactiveUI;
 using SampleWpf2024.Abstractions;
 using SampleWpf2024.Models;
 using SampleWpf2024.Services;
+using System.Collections.Specialized;
+using System.Reactive.Concurrency;
+using System.Reactive.Linq;
+using System.Windows.Input;
 
 namespace SampleWpf2024.ViewModels
 {

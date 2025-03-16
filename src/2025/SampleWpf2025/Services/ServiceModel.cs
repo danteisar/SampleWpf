@@ -17,8 +17,8 @@ namespace SampleWpf2025.Services
         public void Pop(IModel model)
         {
             if (!model.History.Any()) return;
-            model.Input = model.History.Last();
-            model.History.RemoveAt(model.History.Count - 1);
+            model.Input = model.History.First();
+            model.History.RemoveAt(0);
         }
 
         public async Task Random(IModel model)

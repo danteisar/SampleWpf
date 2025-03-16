@@ -1,14 +1,15 @@
-﻿<UserControl x:Class="SampleWpf2025.Components.ButtonsControl"
+﻿<UserControl x:Class="SamplePrism2025.Showcase.Components.ButtonsControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SampleWpf2025.Components"
-             xmlns:vm="clr-namespace:SampleWpf2025.ViewModels" xmlns:cv="clr-namespace:SampleWpf2025.Converters"
+             xmlns:local="clr-namespace:SamplePrism2025.Showcase.Components"
+             xmlns:vm="clr-namespace:SamplePrism2025.Showcase.ViewModels" 
+             xmlns:cv="clr-namespace:SamplePrism2025.Showcase.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" 
              d:DesignWidth="800"
-             d:DataContext="{d:DesignInstance vm:MainViewModel}">
+             d:DataContext="{d:DesignInstance vm:ShowcaseViewModel}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -20,10 +21,10 @@
         </Grid.RowDefinitions>
         <Button Command="{Binding Push}"
                 Content="PUSH"
-                Background="{Binding Model.Input, Converter={cv:CounterToBrushConverter}}"/>
-        <Button Content="RAND" Grid.Column="1" Grid.Row="0"
-                Style="{StaticResource StyleGreen}"
-                Command="{Binding Rand}"/>
+                Background="{Binding Model.Value, Converter={cv:CounterToBrushConverter}}"/>
+        <Button Content="RAND" Grid.Column="1" Grid.Row="0"                
+                Command="{Binding Rand}"
+                Style="{StaticResource StyleGreen}"/>
         <Button Content="POP" Grid.Column="0" Grid.Row="1"
                 Background="{Binding Model.History[0], Converter={cv:CounterToBrushConverter}, FallbackValue=LightBlue}"
                 Command="{Binding Pop}"/>

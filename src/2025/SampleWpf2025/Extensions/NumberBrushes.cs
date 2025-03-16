@@ -23,6 +23,6 @@ internal class Extensions
         { NumberValue.Less55, new SolidColorBrush(Colors.LightCoral) },
         { NumberValue.Less70, new SolidColorBrush(Colors.LightBlue) },
         { NumberValue.Less86, new SolidColorBrush(Colors.LightGreen) },
-        { NumberValue.Perfect, new SolidColorBrush(Colors.Gold) }
+        { NumberValue.Perfect, new SolidColorBrush(Colors.DarkOrange) }
     };
 }

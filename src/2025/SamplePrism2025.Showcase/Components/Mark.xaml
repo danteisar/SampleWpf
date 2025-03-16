@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="SampleWpf2025.Components.Mark"
+﻿<UserControl x:Class="SamplePrism2025.Showcase.Components.Mark"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SampleWpf2025.Components"
+             xmlns:local="clr-namespace:SamplePrism2025.Showcase.Components"
              xmlns:o="System.Windows.Controls"
              mc:Ignorable="d"
              x:Name="DigitMark">

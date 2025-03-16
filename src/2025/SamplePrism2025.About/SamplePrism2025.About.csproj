@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Prism.Wpf" Version="9.0.537" />
+    <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <ProjectReference Include="..\SamplePrism2025.Shared\SamplePrism2025.Shared.csproj" />
   </ItemGroup>
 

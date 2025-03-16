@@ -1,9 +1,16 @@
-﻿<Application x:Class="SamplePrism2025.App"
+﻿<prism:PrismApplication x:Class="SamplePrism2025.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:SamplePrism2025"
-             StartupUri="MainWindow.xaml">
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:local="clr-namespace:SamplePrism2025">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--Local project resources-->
+                <ResourceDictionary Source="Themes/Generic.xaml"/>
+                <!--External project resources-->
+                <ResourceDictionary Source="pack://application:,,,/SamplePrism2025.Showcase;component/Themes/CustomTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
-</Application>
+</prism:PrismApplication>
